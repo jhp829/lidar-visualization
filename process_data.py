@@ -12,8 +12,8 @@ def parseCoordinate():
     line = data.readline()
     if not line:
         return False
-    line = line.split(" ")
-    line[-1] = line[-1].rstrip("\n")
+    # line = line.split(" ")
+    line = line.rstrip("\n")
     return line
 
 parser = argparse.ArgumentParser(description="Parse PCD")
@@ -40,21 +40,27 @@ data.readline()
 count = 0
 epoch_taken = False
 base_time = 0
+coordinates = set()
 
 # datapoints
-while True:
+while True: 
     line = parseCoordinate()
     if (line == False):
         break
-    num = count
-    
+    coordinates.add(line)
+
+print(coordinates)
+
+for coordinate in coordinates:
+    line = coordinate.split(" ")
+
     if not epoch_taken:
         base_time = int(line[4])
         epoch_taken = True
 
-    parseDict["dataPoints"][num] = {
+    parseDict["dataPoints"][count]= {
         "x"         : float(line[0]),
-        "y"         : -float(line[2]) + 0.5,
+        "y"         : -float(line[2]) + 2,
         "z"         : float(line[1]),
         "intensity" : float(line[3]),
         "timestamp" : int(line[4]) - base_time
