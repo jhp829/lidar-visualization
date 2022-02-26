@@ -4,6 +4,7 @@
   "description": "lidar visualization tool for VR",
   "main": "index.js",
   "scripts": {
+    "start": "npm live-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jhp829/lidar-visualization/issues"
   },
-  "homepage": "https://github.com/jhp829/lidar-visualization#readme"
+  "homepage": "https://github.com/jhp829/lidar-visualization#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
 }
