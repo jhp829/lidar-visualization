@@ -15,6 +15,9 @@ AFRAME.registerComponent('point-cloud-loader', {
   },
 
   load_new_file: function(file_name) {
+    var fs = require('fs');
+    var json_contents = fs.readFileSync(file_name, 'utf-8');
+    const data = JSON.parse(json_contents);
     // TODO: load the file and load an initial 200ms worth of points
   },
 
