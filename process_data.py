@@ -54,8 +54,8 @@ while True:
 
     parseDict["dataPoints"][num] = {
         "x"         : float(line[0]),
-        "y"         : float(line[1]),
-        "z"         : float(line[2]),
+        "y"         : -float(line[2]) + 0.5,
+        "z"         : float(line[1]),
         "intensity" : float(line[3]),
         "timestamp" : int(line[4]) - base_time
     }
