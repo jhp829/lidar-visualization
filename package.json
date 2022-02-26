@@ -1,0 +1,19 @@
+{
+  "name": "lidar-visualization",
+  "version": "1.0.0",
+  "description": "lidar visualization tool for VR",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jhp829/lidar-visualization.git"
+  },
+  "author": "Robert Stok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jhp829/lidar-visualization/issues"
+  },
+  "homepage": "https://github.com/jhp829/lidar-visualization#readme"
+}
