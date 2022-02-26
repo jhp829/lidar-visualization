@@ -9,6 +9,9 @@ app = Flask(__name__, template_folder=template_dir)
 def home():
     return render_template('index.html')
 
+@app.route('/<path:path>')
+def static_dir(path):
+    return send_from_directory('../client/', path)
 
 if __name__ == "__main__":
     app.run(debug=True)
