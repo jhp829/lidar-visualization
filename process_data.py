@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 
 def parseLine():
     line = data.readline()
@@ -17,7 +18,7 @@ def parseCoordinate():
 
 parser = argparse.ArgumentParser(description="Parse PCD")
 
-fileName = input("input file: ")
+fileName = sys.argv[1]
 data = open(fileName)
 
 # Metadata
@@ -60,7 +61,6 @@ while True:
     }
     count += 1
 
-outputFile = input("Output file name: ")
-output = open(("lidar_data/" + str(outputFile)), "w")
+output = open(("lidar_data/" + sys.argv[2]), "w")
 output.write(json.dumps(parseDict, sort_keys=False, indent=4, separators=(',', ': ')))
 output.close()
