@@ -37,21 +37,26 @@ parseDict = {
 
 data.readline()
 count = 0
+epoch_taken = False
+base_time = 0
 
 # datapoints
 while True:
     line = parseCoordinate()
     if (line == False):
         break
-
     num = count
+    
+    if not epoch_taken:
+        base_time = int(line[4])
+        epoch_taken = True
 
     parseDict["dataPoints"][str(num)] = {
         "x"         : float(line[0]),
         "y"         : float(line[1]),
         "z"         : float(line[2]),
         "intensity" : float(line[3]),
-        "timestamp" : float(line[4])
+        "timestamp" : int(line[4]) - base_time
     }
     count += 1
 
