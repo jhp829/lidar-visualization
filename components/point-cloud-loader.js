@@ -10,7 +10,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   window_size: 200, // in milliseconds
 
   init: function () {
-    this.load_new_file('data_235.json')
+    this.load_new_file('235.json')
   },
 
   load_new_file: function (filename) {
@@ -27,10 +27,12 @@ AFRAME.registerComponent('point-cloud-loader', {
     })
     .then(point_data => {
       console.log(point_data)
+      console.log(typeof(point_data))
       // load points in
-      for (var count = 0; count < point_data.points; count++) {
-        this.points.set(count, point_data[count.toString()])
+      for (let key in point_data.dataPoints) {
+        this.points.set(parseInt(key), point_data.dataPoints[key])
       }
+      console.log(this.points)
       this.reload_points()
     })
   },
