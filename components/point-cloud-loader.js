@@ -11,6 +11,9 @@ AFRAME.registerComponent('point-cloud-loader', {
 
   init: function () {
     this.load_new_file('235.json')
+    this.el.addEventListener('abuttonup', function() {
+      this.time_offset += 200
+    });
   },
 
   load_new_file: function (filename) {
