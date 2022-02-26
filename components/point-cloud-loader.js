@@ -7,7 +7,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   loaded_points: new Map(),
   lidar_file_path: '../lidar_data/',
   time_offset: 0,
-  window_size: 200, // in milliseconds
+  window_size: 1000, // in milliseconds
 
   init: function () {
     this.load_new_file('235.json')
@@ -44,13 +44,13 @@ AFRAME.registerComponent('point-cloud-loader', {
       if (outer_this.loaded_points.size == 0) {
         return 100000000000
       }
-      return outer_this.loaded_points.get(outer_this.min_loaded_index)
+      return outer_this.points.get(outer_this.min_loaded_index).timestamp
     }
     function maxLoadedTimestamp(outer_this) {
       if (outer_this.loaded_points.size == 0) {
         return 0
       }
-      return outer_this.loaded_points.get(outer_this.max_loaded_index)
+      return outer_this.points.get(outer_this.max_loaded_index).timestamp
     }
 
     while(maxLoadedTimestamp(this) < this.time_offset + this.window_size) {
