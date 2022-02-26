@@ -12,8 +12,8 @@ def parseCoordinate():
     line = data.readline()
     if not line:
         return False
-    # line = line.split(" ")
-    line = line.rstrip("\n")
+    line = line.split(" ")
+    line[-1] = line[-1].rstrip("\n")
     return line
 
 parser = argparse.ArgumentParser(description="Parse PCD")
@@ -40,32 +40,35 @@ data.readline()
 count = 0
 epoch_taken = False
 base_time = 0
-coordinates = set()
+last_coord = 0
+duplicates_found = 0
 
 # datapoints
-while True: 
+while True:
     line = parseCoordinate()
+    if line == last_coord:
+        duplicates_found += 1
+        continue
+    else:
+        last_coord = line
     if (line == False):
         break
-    coordinates.add(line)
-
-print(coordinates)
-
-for coordinate in coordinates:
-    line = coordinate.split(" ")
-
+    num = count
+    
     if not epoch_taken:
         base_time = int(line[4])
         epoch_taken = True
 
-    parseDict["dataPoints"][count]= {
+    parseDict["dataPoints"][num] = {
         "x"         : float(line[0]),
-        "y"         : -float(line[2]) + 2,
+        "y"         : -float(line[2]) + 0.5,
         "z"         : float(line[1]),
         "intensity" : float(line[3]),
         "timestamp" : int(line[4]) - base_time
     }
     count += 1
+
+parseDict["duplicates"] = duplicates_found
 
 output = open(("lidar_data/" + sys.argv[2]), "w")
 output.write(json.dumps(parseDict, sort_keys=False, indent=4, separators=(',', ': ')))
