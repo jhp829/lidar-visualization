@@ -13,6 +13,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     this.load_new_file('235.json')
     this.el.addEventListener('abuttonup', function() {
       this.time_offset += 200
+      this.reload_points()
     });
   },
 
@@ -70,7 +71,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     var point = this.points.get(point_index)
 
     // create point element
-    var point_element = document.createElement('a-sphere');
+    var point_element = document.createElement('a-box');
 
     // set attributes
     var position = { x: point.x, y: point.y, z: point.z }
