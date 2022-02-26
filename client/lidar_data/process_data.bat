@@ -1,0 +1,11 @@
+@echo off
+start python process_data.py "lidar_points_235.pcd" "235.json"
+start python process_data.py "lidar_points_245.pcd" "245.json"
+start python process_data.py "lidar_points_255.pcd" "255.json"
+start python process_data.py "lidar_points_265.pcd" "265.json"
+start python process_data.py "lidar_points_275.pcd" "275.json"
+start python process_data.py "lidar_points_285.pcd" "285.json"
+start python process_data.py "lidar_points_295.pcd" "295.json"
+start python process_data.py "lidar_points_305.pcd" "305.json"
+start python process_data.py "lidar_points_315.pcd" "315.json"
+start python process_data.py "lidar_points_325.pcd" "325.json"

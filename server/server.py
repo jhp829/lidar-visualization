@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template, send_file, send_from
 import os
 
 template_dir = os.path.abspath('../client')
-app = Flask(name, template_folder=template_dir)
+app = Flask(__name__, template_folder=template_dir)
 
 
 @app.route('/')
