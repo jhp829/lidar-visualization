@@ -5,7 +5,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   min_loaded_index: 0,
   max_loaded_index: 0,
   loaded_points: new Map(),
-  lidar_file_path: '../components/',
+  lidar_file_path: '../lidar_data/',
   time_offset: 0,
   window_size: 200, // in milliseconds
 
@@ -13,7 +13,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     this.load_new_file('data_235.json')
   },
 
-  load_new_file: function(file_name) {
+  load_new_file: function (filename) {
     // reset all tracking variables
     this.points = new Map()
     this.loaded_points = new Map()
@@ -21,34 +21,42 @@ AFRAME.registerComponent('point-cloud-loader', {
     this.max_loaded_index = 0
     this.time_offset = 0
 
-    // load file in
-    var fs = require('fs');
-    var json_contents = fs.readFileSync(lidar_file_path + file_name, 'utf-8');
-    const point_data = JSON.parse(json_contents);
-
-    // load points in
-    for (var count = 0; count < point_data.points; count++) {
-      point_data.set(count, point_data[count.toString()])
-    }
-    this.reload_points()
+    fetch(this.lidar_file_path + filename)
+    .then(response => {
+       return response.json();
+    })
+    .then(point_data => {
+      console.log(point_data)
+      // load points in
+      for (var count = 0; count < point_data.points; count++) {
+        this.points.set(count, point_data[count.toString()])
+      }
+      this.reload_points()
+    })
   },
 
   reload_points: function () {
     // unloads all 'old' points
     // then loads all newly 'in timestamp' points
     function minLoadedTimestamp(outer_this) {
+      if (outer_this.loaded_points.size == 0) {
+        return 100000000000
+      }
       return outer_this.loaded_points.get(outer_this.min_loaded_index)
     }
     function maxLoadedTimestamp(outer_this) {
+      if (outer_this.loaded_points.size == 0) {
+        return 0
+      }
       return outer_this.loaded_points.get(outer_this.max_loaded_index)
     }
 
     while(maxLoadedTimestamp(this) < this.time_offset + this.window_size) {
-      add_point(this.max_loaded_index + 1)
+      this.add_point(this.max_loaded_index + 1)
     }
 
     while(minLoadedTimestamp(this) < this.time_offset) {
-      remove_point(this.min_loaded_index)
+      this.remove_point(this.min_loaded_index)
     }
   },
 
