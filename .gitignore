@@ -1,2 +1,3 @@
 node_modules/
-parsed_data/
+
+lidar_data/*.json
