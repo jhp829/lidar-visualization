@@ -62,5 +62,5 @@ while True:
 
 outputFile = input("Output file name: ")
 output = open(("lidar_data/" + str(outputFile)), "w")
-output.write(json.dumps(parseDict, sort_keys=True, indent=4, separators=(',', ': ')))
+output.write(json.dumps(parseDict, sort_keys=False, indent=4, separators=(',', ': ')))
 output.close()
