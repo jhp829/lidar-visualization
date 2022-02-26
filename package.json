@@ -4,7 +4,7 @@
   "description": "lidar visualization tool for VR",
   "main": "index.js",
   "scripts": {
-    "start": "live-server --port=5000",
+    "start": "export port=5000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
