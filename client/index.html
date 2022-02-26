@@ -13,8 +13,6 @@
     <a-scene point-cloud-loader inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
       <a-entity id="cameraRig" recorder position="0 0 0">
         <a-entity id="head" camera wasd-controls look-controls></a-entity>
-        <!-- <a-entity id="left-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>
-        <a-entity id="right-hand" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity> -->
         <a-entity id="ctlL"
             teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
             raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" controller-listener>
