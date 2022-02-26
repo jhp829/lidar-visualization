@@ -51,7 +51,7 @@ while True:
         base_time = int(line[4])
         epoch_taken = True
 
-    parseDict["dataPoints"][str(num)] = {
+    parseDict["dataPoints"][num] = {
         "x"         : float(line[0]),
         "y"         : float(line[1]),
         "z"         : float(line[2]),
