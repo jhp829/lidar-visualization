@@ -70,6 +70,6 @@ while True:
 
 parseDict["duplicates"] = duplicates_found
 
-output = open(("lidar_data/" + sys.argv[2]), "w")
+output = open(sys.argv[2], "w")
 output.write(json.dumps(parseDict, sort_keys=False, indent=4, separators=(',', ': ')))
 output.close()
