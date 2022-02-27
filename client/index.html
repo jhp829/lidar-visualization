@@ -13,7 +13,7 @@
   </head>
   <body>
     <a-scene point-cloud-loader inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
-      <a-entity id="merger" buffer-geometry-merger material="color: #CCC"></a-entity>
+      <a-entity id="merger" buffer-geometry-merger="preserveOriginal: true" material="color: #CCC"></a-entity>
       <a-entity id="cameraRig" recorder position="0 0 0">
         <a-entity id="head" position-emitter camera wasd-controls look-controls></a-entity>
         <a-entity id="ctlL"

@@ -8,6 +8,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   view_radius: 9, // in meters
   merger_el: null,
   camera_el: null,
+  density: 0.1,
 
   init: function () {
     this.merger_el = document.querySelector('#merger')
@@ -21,6 +22,12 @@ AFRAME.registerComponent('point-cloud-loader', {
         z: positionVec.z  
       }
       this.reload_points()
+    }, true);
+    this.el.addEventListener('abuttonup', () => {
+      this.density += 0.025
+    }, true);
+    this.el.addEventListener('bbuttonup', () => {
+      this.density -= 0.025
     }, true);
   },
 
@@ -52,7 +59,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     function add_square(x, y) {
       var square_key = x.toString() + "," + y.toString()
       for(point_index in outer_this.points.get(square_key)) {
-        if (Math.random() < 0.3) {
+        if (Math.random() < this.density) {
           outer_this.add_point(point_index, square_key)
         }
       }
