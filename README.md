@@ -1,3 +1,5 @@
+[![Watch the video](https://www.youtube.com/watch?v=A_Kyd4WlZRM/default.jpg)](https://www.youtube.com/watch?v=A_Kyd4WlZRM)
+
 ## Inspiration
 One day while walking along the hallowed halls of the Oxford maths institute there was an idea, a simple Eureka moment. Before I was blind to the possibility but suddenly I could see: world-scale LiDAR visualization in web VR environments. The dots connected - I saw graphs flashing before my eyes, matrices being multiplied in my head.
 
