@@ -5,12 +5,12 @@ AFRAME.registerComponent('point-cloud-loader', {
   current_position: { x: 0, y: 0, z: 0 },
   loaded_points: new Map(),
   lidar_file_path: '../lidar_data/',
-  view_radius: 9, // in meters
+  view_radius: 10, // in meters
   merger_el: null,
 
   init: function () {
     this.merger_el = document.querySelector('#merger')
-    this.load_new_file('235.json')
+    this.load_new_file('265.json')
     this.el.addEventListener('new-position', function(position) {
       this.current_position = position
       this.reload_points()
@@ -47,7 +47,7 @@ AFRAME.registerComponent('point-cloud-loader', {
       for(point_index in outer_this.points.get(square_key)) {
         if (Math.random() < 0.3) {
           outer_this.add_point(point_index, square_key)
-        }
+        } 
       }
     }
 
@@ -66,11 +66,16 @@ AFRAME.registerComponent('point-cloud-loader', {
     var point_element = document.createElement('a-box');
 
     // set attributes
-    var position = { x: point.x, y: point.y, z: point.z }
+    var position = { x: point.x, y: point.y - 2, z: point.z }
+    var distance = Math.sqrt(point.x*point.x + point.z*point.z)
+    var colorScale = parseInt(255 - ((255/(this.view_radius * 1.42)) * distance)).toString(16)
+    if (colorScale.length < 2) {
+      colorScale = "0" + colorScale;
+    }
     point_element.setAttribute('position', position);
     point_element.setAttribute('geometry', {buffer: true, primitive: 'box'})
     point_element.setAttribute('scale', { x: 0.05, y: 0.05, z: 0.05 });
-    point_element.setAttribute('color', '#F5E942');
+    point_element.setAttribute('color', '#FF' + colorScale + colorScale);
 
     // append it to the scene
     this.merger_el.appendChild(point_element)
