@@ -12,7 +12,7 @@
   </head>
   <body>
     <a-scene point-cloud-loader inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
-      <a-entity id="cameraRig" recorder position="0 1.7 0">
+      <a-entity id="cameraRig" recorder position="0 0 0">
         <a-entity id="head" position-emitter camera wasd-controls look-controls></a-entity>
         <a-entity id="ctlL"
             teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"

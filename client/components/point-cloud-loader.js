@@ -5,7 +5,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   current_position: { x: 0, y: 0, z: 0 },
   loaded_points: new Map(),
   lidar_file_path: '../lidar_data/',
-  view_radius: 10, // in meters
+  view_radius: 7, // in meters
 
   init: function () {
     this.load_new_file('235.json')
@@ -43,7 +43,9 @@ AFRAME.registerComponent('point-cloud-loader', {
     function add_square(x, y) {
       var square_key = x.toString() + "," + y.toString()
       for(point_index in outer_this.points.get(square_key)) {
-        outer_this.add_point(point_index, square_key)
+        if (Math.random() < 0.3) {
+          outer_this.add_point(point_index, square_key)
+        }
       }
     }
 
