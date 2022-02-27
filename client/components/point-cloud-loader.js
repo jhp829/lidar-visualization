@@ -8,7 +8,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   view_radius: 10, // in meters
   merger_el: null,
   camera_el: null,
-  density: 0.1,
+  density: 0.6,
 
   init: function () {
     this.merger_el = document.querySelector('#merger')
