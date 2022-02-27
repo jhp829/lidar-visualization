@@ -2,19 +2,19 @@ AFRAME.registerComponent('point-cloud-loader', {
   schema: {},
 
   points: new Map(),
-  current_position: { x: 0, y: 0, z: 0 },
+  current_position: { x: 0, y: 1.5, z: 0 },
   loaded_points: new Map(),
   lidar_file_path: '../lidar_data/',
-  view_radius: 10, // in meters
+  view_radius: 9, // in meters
   merger_el: null,
   camera_el: null,
-  density: 0.6,
+  density: 0.2,
   current_scene_index: 0,
 
   init: function () {
     this.merger_el = document.querySelector('#merger')
     this.camera_el = document.querySelector('#cameraRig')
-    this.load_new_file('235.json')
+    this.load_new_file('305.json')
     this.el.addEventListener('ybuttonup', () => {
       var positionVec = this.camera_el.getAttribute("position")
       this.current_position = {
@@ -36,6 +36,12 @@ AFRAME.registerComponent('point-cloud-loader', {
       var scenes = ["235.json", "245.json", "255.json", "265.json", "275.json", "285.json"]
       this.load_new_file(scenes[this.current_scene_index])
     })
+    // this.el.addEventListener('abuttonup', () => {
+    //   this.density += 0.025
+    // }, true);
+    // this.el.addEventListener('bbuttonup', () => {
+    //   this.density -= 0.025
+    // }, true);
   },
 
   load_new_file: function (filename) {
@@ -87,16 +93,13 @@ AFRAME.registerComponent('point-cloud-loader', {
     var point_element = document.createElement('a-box');
 
     // set attributes
-    var position = { x: point.x, y: point.y - 2, z: point.z }
+    var position = { x: point.x, y: point.y, z: point.z }
     var distance = Math.sqrt(point.x*point.x + point.z*point.z)
-    var colorScale = parseInt(255 - ((255/(this.view_radius * 1.42)) * distance)).toString(16)
-    if (colorScale.length < 2) {
-      colorScale = "0" + colorScale;
-    }
+    var colorScale = parseInt(255 - ((145/(this.view_radius * 1.42)) * distance)).toString(16)
     point_element.setAttribute('position', position);
     point_element.setAttribute('geometry', {buffer: true, primitive: 'box'})
     point_element.setAttribute('scale', { x: 0.05, y: 0.05, z: 0.05 });
-    point_element.setAttribute('color', '#FF' + colorScale + colorScale);
+    point_element.setAttribute('color', '#' + colorScale + '6E' + 'FF');
 
     // append it to the scene
     this.merger_el.appendChild(point_element)
