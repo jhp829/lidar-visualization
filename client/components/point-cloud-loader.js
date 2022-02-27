@@ -5,7 +5,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   current_position: { x: 0, y: 1.5, z: 0 },
   loaded_points: new Map(),
   lidar_file_path: '../lidar_data/',
-  view_radius: 9, // in meters
+  view_radius: 15, // in meters
   merger_el: null,
   camera_el: null,
   density: 0.2,
@@ -14,7 +14,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   init: function () {
     this.merger_el = document.querySelector('#merger')
     this.camera_el = document.querySelector('#cameraRig')
-    this.load_new_file('305.json')
+    this.load_new_file('315.json')
     this.el.addEventListener('ybuttonup', () => {
       var positionVec = this.camera_el.getAttribute("position")
       this.current_position = {
