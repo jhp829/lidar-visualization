@@ -68,6 +68,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     // set attributes
     var position = { x: point.x, y: point.y, z: point.z }
     point_element.setAttribute('position', position);
+    point_element.setAttribute('geometry', {buffer: true, primitive: 'box'})
     point_element.setAttribute('scale', { x: 0.05, y: 0.05, z: 0.05 });
     point_element.setAttribute('color', '#F5E942');
 
