@@ -5,9 +5,11 @@ AFRAME.registerComponent('point-cloud-loader', {
   current_position: { x: 0, y: 0, z: 0 },
   loaded_points: new Map(),
   lidar_file_path: '../lidar_data/',
-  view_radius: 7, // in meters
+  view_radius: 9, // in meters
+  merger_el: null,
 
   init: function () {
+    this.merger_el = document.querySelector('#merger')
     this.load_new_file('235.json')
     this.el.addEventListener('new-position', function(position) {
       this.current_position = position
@@ -70,7 +72,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     point_element.setAttribute('color', '#F5E942');
 
     // append it to the scene
-    this.el.appendChild(point_element)
+    this.merger_el.appendChild(point_element)
 
     // add it to the list of loaded points so it can be easily removed later
     this.loaded_points.set(point_index, point_element)
@@ -100,7 +102,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   // we assume the point removed has the lowest index of all points
   remove_point: function (point_index) {
     var point_element = this.loaded_points.get(point_index)
-    this.el.removeChild(point_element)
+    this.merger_el.removeChild(point_element)
     this.loaded_points.delete(point_index)
   }
 });

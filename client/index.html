@@ -9,9 +9,11 @@
     <script src="components/position-emitter.js"></script>
     <script src="https://unpkg.com/aframe-environment-component"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-geometry-merger-component/dist/aframe-geometry-merger-component.min.js"></script>
   </head>
   <body>
     <a-scene point-cloud-loader inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+      <a-entity id="merger" geometry-merger="preserveOriginal: false" material="color: #CCC"></a-entity>
       <a-entity id="cameraRig" recorder position="0 0 0">
         <a-entity id="head" position-emitter camera wasd-controls look-controls></a-entity>
         <a-entity id="ctlL"
