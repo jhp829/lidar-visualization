@@ -46,13 +46,15 @@ duplicates_found = 0
 # datapoints
 while True:
     line = parseCoordinate()
+    if (line == False):
+        break
     if line == last_coord:
         duplicates_found += 1
         continue
+    elif line[3] == "0.0":
+        continue
     else:
         last_coord = line
-    if (line == False):
-        break
     
     if not epoch_taken:
         base_time = int(line[4])
