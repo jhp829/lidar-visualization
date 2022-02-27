@@ -53,19 +53,31 @@ while True:
         last_coord = line
     if (line == False):
         break
-    num = count
     
     if not epoch_taken:
         base_time = int(line[4])
         epoch_taken = True
 
-    parseDict["dataPoints"][num] = {
-        "x"         : float(line[0]),
-        "y"         : -float(line[2]) + 0.5,
-        "z"         : float(line[1]),
-        "intensity" : float(line[3]),
-        "timestamp" : int(line[4]) - base_time
-    }
+    x = int(float(line[0]) // 1)
+    z = int(float(line[1]) // 1)
+
+    try:
+        parseDict["dataPoints"][str(x) + "," + str(z)][count] = {
+            "x"         : float(line[0]),
+            "y"         : -float(line[2]) + 0.5,
+            "z"         : float(line[1]),
+            "intensity" : float(line[3]),
+            "timestamp" : int(line[4]) - base_time
+        }
+    except:
+        parseDict["dataPoints"][str(x) + "," + str(z)] = {}
+        parseDict["dataPoints"][str(x) + "," + str(z)][count] = {
+            "x"         : float(line[0]),
+            "y"         : -float(line[2]) + 0.5,
+            "z"         : float(line[1]),
+            "intensity" : float(line[3]),
+            "timestamp" : int(line[4]) - base_time
+        }
     count += 1
 
 parseDict["duplicates"] = duplicates_found
