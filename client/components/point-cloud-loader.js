@@ -59,7 +59,7 @@ AFRAME.registerComponent('point-cloud-loader', {
     function add_square(x, y) {
       var square_key = x.toString() + "," + y.toString()
       for(point_index in outer_this.points.get(square_key)) {
-        if (Math.random() < this.density) {
+        if (Math.random() < outer_this.density) {
           outer_this.add_point(point_index, square_key)
         } 
       }
