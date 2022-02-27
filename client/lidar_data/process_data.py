@@ -66,7 +66,7 @@ while True:
     try:
         parseDict["dataPoints"][str(x) + "," + str(z)][count] = {
             "x"         : float(line[0]),
-            "y"         : -float(line[2]) + 0.5,
+            "y"         : -float(line[2]) + 2,
             "z"         : float(line[1]),
             "intensity" : float(line[3]),
             "timestamp" : int(line[4]) - base_time
@@ -75,7 +75,7 @@ while True:
         parseDict["dataPoints"][str(x) + "," + str(z)] = {}
         parseDict["dataPoints"][str(x) + "," + str(z)][count] = {
             "x"         : float(line[0]),
-            "y"         : -float(line[2]) + 0.5,
+            "y"         : -float(line[2]) + 2,
             "z"         : float(line[1]),
             "intensity" : float(line[3]),
             "timestamp" : int(line[4]) - base_time
