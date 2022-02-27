@@ -9,6 +9,7 @@ AFRAME.registerComponent('point-cloud-loader', {
   merger_el: null,
   camera_el: null,
   density: 0.6,
+  current_scene_index: 0,
 
   init: function () {
     this.merger_el = document.querySelector('#merger')
@@ -29,6 +30,12 @@ AFRAME.registerComponent('point-cloud-loader', {
     this.el.addEventListener('bbuttonup', () => {
       this.density -= 0.025
     }, true);
+    this.el.addEventListener('click', () => {
+      this.current_scene_index += 1
+      this.current_scene_index = this.current_scene_index % 6
+      var scenes = ["235.json", "245.json", "255.json", "265.json", "275.json", "285.json"]
+      this.load_new_file(scenes[this.current_scene_index])
+    })
   },
 
   load_new_file: function (filename) {
