@@ -6,14 +6,17 @@
     <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
     <script src="components/point-cloud-loader.js"></script>
     <script src="components/controller-listener.js"></script>
+    <script src="components/position-emitter.js"></script>
     <script src="https://unpkg.com/aframe-environment-component"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.3.1/dist/aframe-environment-component.min.js"></script>
     <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <script src="https://unpkg.com/aframe-geometry-merger-component/dist/aframe-geometry-merger-component.min.js"></script>
   </head>
   <body>
     <a-scene point-cloud-loader inspector="url: https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js">
+      <a-entity id="merger" buffer-geometry-merger material="color: #CCC"></a-entity>
       <a-entity id="cameraRig" recorder position="0 0 0">
-        <a-entity id="head" camera wasd-controls look-controls></a-entity>
+        <a-entity id="head" position-emitter camera wasd-controls look-controls></a-entity>
         <a-entity id="ctlL"
             teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head; startEvents: teleportstart; endEvents: teleportend"
             raycaster="objects: .collidable; far:1.2;" laser-controls="hand: left" controller-listener>
